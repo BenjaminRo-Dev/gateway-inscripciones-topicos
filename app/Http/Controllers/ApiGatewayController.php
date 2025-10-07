@@ -9,7 +9,6 @@ class ApiGatewayController extends Controller
 {
     public function handle(Request $request, $service, $path = '')
     {
-        // Definir a qué microservicio va
         $baseUrl = match ($service) {
             'carreras' => config('services.carreras.base_url'),
             'grupos' => config('services.grupos.base_url'),
@@ -23,11 +22,15 @@ class ApiGatewayController extends Controller
             return response()->json(['error' => 'Servicio no encontrado'], 404);
         }
 
-    // URL final
-    $pathPart = $service . ($path !== '' ? '/' . ltrim($path, '/') : '');
-    $url = rtrim($baseUrl, '/') . '/api/' . ltrim($pathPart, '/');
-        // return $url;
-        // Reenviar la petición con el mismo método
+        // Si no hay un path, no agregamos "/api/" al final
+        $url = rtrim($baseUrl, '/');
+
+        if ($path !== '') {
+            $url .= '/api/' . ltrim($path, '/');
+        } else {
+            $url .= '/api'; // raíz del microservicio
+        }
+
         $response = Http::withHeaders($request->headers->all())
             ->send($request->method(), $url, [
                 'query' => $request->query(),

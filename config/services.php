@@ -2,6 +2,22 @@
 
 return [
 
+    'grupos' => [
+        'base_url' => env('GRUPOS_SERVICE_URL'),
+    ],
+    'materias' => [
+        'base_url' => env('MATERIAS_SERVICE_URL'),
+    ],
+    'carreras' => [
+        'base_url' => env('CARRERAS_SERVICE_URL'),
+    ],
+    'inscripciones' => [
+        'base_url' => env('INSCRIPCIONES_SERVICE_URL'),
+    ],
+    'usuarios' => [
+        'base_url' => env('USUARIOS_SERVICE_URL'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Third Party Services

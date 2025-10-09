@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  laravel.gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel-gateway
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      APP_ENV: local
+      APP_DEBUG: true
+      APP_URL: http://localhost:80
+
+      # URLs de microservicios
+      GRUPOS_SERVICE_URL: http://grupos-service:3001
+      MATERIAS_SERVICE_URL: http://materias-service:3000
+      USUARIOS_SERVICE_URL: http://perfil-service:3002
+      ACADEMIA_SERVICE_URL: http://academia-service:3003
+      INSCRIPCIONES_SERVICE_URL: http://laravel.inscripciones
+
+    networks:
+      - microservicios-topicos
+
+networks:
+  microservicios-topicos:
+    external: true

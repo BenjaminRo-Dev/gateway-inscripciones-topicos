@@ -8,8 +8,8 @@ return [
     'materias' => [
         'base_url' => env('MATERIAS_SERVICE_URL'),
     ],
-    'carreras' => [
-        'base_url' => env('CARRERAS_SERVICE_URL'),
+    'academia' => [
+        'base_url' => env('ACADEMIA_SERVICE_URL'),
     ],
     'inscripciones' => [
         'base_url' => env('INSCRIPCIONES_SERVICE_URL'),

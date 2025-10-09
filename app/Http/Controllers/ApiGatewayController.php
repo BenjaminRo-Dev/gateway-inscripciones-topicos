@@ -10,7 +10,7 @@ class ApiGatewayController extends Controller
     public function handle(Request $request, $service, $path = '')
     {
         $baseUrl = match ($service) {
-            'carreras' => config('services.carreras.base_url'),
+            'academia' => config('services.academia.base_url'),
             'grupos' => config('services.grupos.base_url'),
             'inscripciones' => config('services.inscripciones.base_url'),
             'usuarios' => config('services.usuarios.base_url'),
@@ -30,6 +30,8 @@ class ApiGatewayController extends Controller
         } else {
             $url .= '/api'; // raíz del microservicio
         }
+
+        // return $url;
 
         $response = Http::withHeaders($request->headers->all())
             ->send($request->method(), $url, [

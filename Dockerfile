@@ -32,6 +32,9 @@ RUN addgroup -g ${GID} sail \
 # Copiar código fuente
 COPY . /var/www/html
 
+# Instalar dependencias de PHP del proyecto (solo para producción)
+# RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+
 # Dar permisos
 RUN chown -R sail:sail /var/www/html
 

@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   laravel.gateway:
     build:
@@ -21,7 +19,8 @@ services:
       USUARIOS_SERVICE_URL: http://perfil-service:3002
       ACADEMIA_SERVICE_URL: http://academia-service:3003
       INSCRIPCIONES_SERVICE_URL: http://laravel.inscripciones
-
+    command: >
+      sh -c "composer install && php artisan serve --host=0.0.0.0 --port=80"
     networks:
       - microservicios-topicos
 
